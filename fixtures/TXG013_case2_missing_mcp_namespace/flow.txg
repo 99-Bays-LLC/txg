@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: mcp:search]
+skill: [Start] -> t

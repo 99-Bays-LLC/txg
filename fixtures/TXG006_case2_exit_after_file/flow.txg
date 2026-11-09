@@ -1,0 +1,3 @@
+@skill: test
+doc: [file: ref.txt]
+skill: [Start] -> doc -> ? exit { 0 => [OK], _ => [Fail] }

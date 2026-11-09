@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG004",
+    "line": 3,
+    "message": "\"island\" can never be reached from \"skill\""
+  }
+]

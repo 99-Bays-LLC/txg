@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG009",
+    "line": 1,
+    "message": "\"references/extra.md\" is in the skill folder but no node mentions it"
+  }
+]

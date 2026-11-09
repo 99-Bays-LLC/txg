@@ -1,0 +1,2 @@
+@skill: test
+skill: [Start] -> ? judge "status" { "pass" => [OK], "fail" => [Bad] }

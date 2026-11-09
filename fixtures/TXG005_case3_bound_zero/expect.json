@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG005",
+    "line": 3,
+    "message": "(max N) needs N of at least 1"
+  }
+]

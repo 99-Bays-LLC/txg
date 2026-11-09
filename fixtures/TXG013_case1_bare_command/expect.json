@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG013",
+    "line": 2,
+    "message": "tool must be bash(\"...\") or mcp:server/tool, got \"git status\""
+  }
+]

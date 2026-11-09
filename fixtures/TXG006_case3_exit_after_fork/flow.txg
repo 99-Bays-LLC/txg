@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: bash("run")]
+skill: [Start] -> t -> ? judge "ok?" { "yes" => [Good], _ => [Bad] } -> ? exit { 0 => [End], _ => [Err] }

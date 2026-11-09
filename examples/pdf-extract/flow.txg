@@ -1,0 +1,10 @@
+@skill: pdf-extract
+@entry: "User asks for the text of a PDF"
+
+skill: [SKILL.md]
+fast: [tool: bash("pdftotext -layout in.pdf out.txt")]
+ocr:  [tool: bash("ocrmypdf in.pdf out.pdf")]
+done: [Return the text]
+
+skill -> fast -> done
+fast -!> ocr -> done       # scanned PDF: no text layer, so OCR it

@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG010",
+    "line": 2,
+    "message": "\"t\" runs bash(\"rm -rf /tmp/data\"), which allowed-tools in SKILL.md does not permit"
+  }
+]

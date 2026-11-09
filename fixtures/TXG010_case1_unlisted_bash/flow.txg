@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: bash("rm -rf /tmp/data")]
+skill: [Start] -> t

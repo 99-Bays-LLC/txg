@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG008",
+    "line": 2,
+    "message": "file \"scripts/clean.sh\" does not exist"
+  }
+]

@@ -1,0 +1,2 @@
+@skill: test
+skill: [tool: bash("git status)] -> done: [Done]

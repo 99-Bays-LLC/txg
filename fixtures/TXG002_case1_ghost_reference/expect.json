@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG002",
+    "line": 2,
+    "message": "\"missing_step\" is used but never declared (write missing_step: [what it does])"
+  }
+]

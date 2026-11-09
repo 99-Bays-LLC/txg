@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG012",
+    "line": 2,
+    "message": "? judge arms are quoted answers (or _), not numbers"
+  }
+]

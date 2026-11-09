@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG006",
+    "line": 2,
+    "message": "? exit reads a tool's exit code, but \"skill\" is not a tool"
+  }
+]

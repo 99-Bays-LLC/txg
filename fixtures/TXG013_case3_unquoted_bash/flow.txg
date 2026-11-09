@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: bash(pytest)]
+skill: [Start] -> t

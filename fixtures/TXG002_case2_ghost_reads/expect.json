@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG002",
+    "line": 3,
+    "message": "\"ghost_doc\" is used but never declared (write ghost_doc: [what it does])"
+  }
+]

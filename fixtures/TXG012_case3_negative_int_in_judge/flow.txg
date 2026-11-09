@@ -1,0 +1,2 @@
+@skill: test
+skill: [Start] -> ? judge "score" { 1 => [High], _ => [Low] }

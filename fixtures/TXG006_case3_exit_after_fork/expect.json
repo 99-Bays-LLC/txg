@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG001",
+    "line": 3,
+    "message": "unexpected \"->\""
+  }
+]

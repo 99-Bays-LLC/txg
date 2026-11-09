@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG007",
+    "line": 3,
+    "message": "fork \"_f1\" has no _ arm; say what happens for any other result"
+  }
+]

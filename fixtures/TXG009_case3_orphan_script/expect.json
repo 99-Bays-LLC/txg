@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG009",
+    "line": 1,
+    "message": "\"scripts/migrate.sql\" is in the skill folder but no node mentions it"
+  }
+]

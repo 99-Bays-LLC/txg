@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG010",
+    "line": 2,
+    "message": "\"t\" runs bash(\"npm test\"), which allowed-tools in SKILL.md does not permit"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG011",
+    "line": 1,
+    "message": "@skill \"wrong-name\" does not match name \"real-name\" in SKILL.md"
+  }
+]

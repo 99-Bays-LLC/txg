@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG005",
+    "line": 3,
+    "message": "\"b\" loops back to \"a\" with no bound: write a (max N)"
+  }
+]

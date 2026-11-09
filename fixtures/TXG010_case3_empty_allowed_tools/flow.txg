@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: bash("npm test")]
+skill: [Start] -> t

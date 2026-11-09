@@ -1,0 +1,14 @@
+[
+  {
+    "severity": "warning",
+    "code": "TXG004",
+    "line": 3,
+    "message": "\"step1\" can never be reached from \"skill\""
+  },
+  {
+    "severity": "warning",
+    "code": "TXG004",
+    "line": 3,
+    "message": "\"step2\" can never be reached from \"skill\""
+  }
+]

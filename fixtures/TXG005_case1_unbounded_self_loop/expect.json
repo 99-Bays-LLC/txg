@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG005",
+    "line": 3,
+    "message": "\"retry\" loops back to \"retry\" with no bound: write retry (max N)"
+  }
+]

@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG001",
+    "line": 2,
+    "message": "a parallel group needs at least two steps joined by &"
+  }
+]

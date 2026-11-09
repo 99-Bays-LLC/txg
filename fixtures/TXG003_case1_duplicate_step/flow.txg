@@ -1,0 +1,4 @@
+@skill: test
+run: [First run]
+run: [Second run]
+skill: [Start] -> run
