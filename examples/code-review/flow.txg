@@ -1,0 +1,19 @@
+@skill: code-review
+@version: 0.1
+@entry: "User asks for a review of a diff, branch or pull request"
+
+skill: [SKILL.md]
+skill reads: [file: references/rubric.md], [file: references/severity.md]
+
+diff:   [tool: bash("git diff origin/main...HEAD")]
+review: [Review the diff against the rubric, write findings.json]
+check:  [tool: bash("scripts/validate-findings.sh findings.json")]
+report: [Write the final review]
+stop:   [Stop and report the unresolved findings]
+
+skill -> diff -> review -> check
+check -> ? exit {
+  0 => report
+  _ => review (max 3)      # retry the review, at most 3 times
+}
+check -!> stop             # taken when the retry budget runs out

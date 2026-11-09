@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: bash("test")]
+skill: [Start] -> t -> ? exit { "success" => [OK], _ => [Fail] }

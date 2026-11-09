@@ -1,0 +1,15 @@
+@skill: wrong-name
+
+skill: [SKILL.md]
+skill reads: [file: references/missing.md]
+a: [Do the thing]
+b: [tool: bash("rm -rf build")]
+c: [tool: bash("ls")]
+lonely: [Never reached]
+
+skill -> a -> b
+b -> ? exit {
+  0 => c
+}
+c -> a                     # loop with no bound
+a -> ghost                 # undefined

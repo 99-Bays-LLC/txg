@@ -1,0 +1,26 @@
+@skill: deploy-pipeline
+@version: 0.1
+@entry: "User asks to deploy the project or run release validation"
+
+skill: [SKILL.md]
+skill reads: [file: references/env-matrix.json], [file: guidelines/deploy-checklist.md]
+
+up:     [tool: bash("docker compose up -d")]
+build:  [tool: bash("npm run build")]
+ask:    [tool: mcp:prompts/ask-keys]
+checks: { lint: [tool: bash("npm run lint")] & types: [tool: bash("npx tsc --noEmit")] }
+health: [tool: bash("curl -fsS http://localhost:8080/health")]
+
+skill -> ? judge "Which setup does this machine have?" {
+  "docker"         => up
+  "local runtime"  => build
+  _                => ask -> stop: [Halt with instructions]
+}
+up -!> build               # fall back to a local build if Docker fails
+up -> checks
+build -> checks
+checks -> health
+health -> ? exit {
+  0 => tag: [tool: bash("git tag release")] -> done: [Report the release is validated]
+  _ => logs: [Read the container logs] -> fix: [Propose a remediation]
+}

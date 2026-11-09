@@ -1,0 +1,3 @@
+@skill: test
+t: [tool: mcp:slack/post-message]
+skill: [Start] -> t

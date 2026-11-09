@@ -1,0 +1,3 @@
+@skill: test
+skill: [Start] -> t: [tool: bash("cmd")] -> done: [Done]
+orphan_handler: [Fix errors] -> done

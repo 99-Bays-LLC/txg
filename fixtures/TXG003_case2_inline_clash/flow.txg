@@ -1,0 +1,3 @@
+@skill: test
+step_a: [Do step A]
+skill: [Start] -> step_a: [Redeclared step A]

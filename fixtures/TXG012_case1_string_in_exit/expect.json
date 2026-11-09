@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG012",
+    "line": 3,
+    "message": "? exit arms are numbers or _"
+  }
+]

@@ -1,0 +1,3 @@
+@skill: test
+skill: [Start] -> retry: [Retry step]
+retry -> retry

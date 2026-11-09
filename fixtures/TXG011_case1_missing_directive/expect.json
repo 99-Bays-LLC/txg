@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG011",
+    "line": 1,
+    "message": "missing @skill: name"
+  }
+]

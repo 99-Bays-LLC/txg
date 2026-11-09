@@ -1,0 +1,3 @@
+@skill: test
+skill: [Start] -> a: [A] -> b: [B]
+b -> a

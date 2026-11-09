@@ -1,0 +1,3 @@
+@skill: test
+schema: [file: schemas/target.json]
+skill: [Start] reads: schema

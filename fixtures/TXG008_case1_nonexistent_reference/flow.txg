@@ -1,0 +1,3 @@
+@skill: test
+doc: [file: references/missing.md]
+skill: [Start] reads: doc

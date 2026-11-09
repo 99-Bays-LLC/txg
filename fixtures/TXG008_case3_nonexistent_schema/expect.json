@@ -1,0 +1,8 @@
+[
+  {
+    "severity": "error",
+    "code": "TXG008",
+    "line": 2,
+    "message": "file \"schemas/target.json\" does not exist"
+  }
+]

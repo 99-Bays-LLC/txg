@@ -1,0 +1,2 @@
+@skill: test
+skill: [Manual Step] -> ? exit { 0 => [OK], _ => [Fail] }
