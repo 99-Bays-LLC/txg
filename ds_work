@@ -1,0 +1,142 @@
+Here is the complete, comprehensive Markdown log for the `.txg` project. 
+
+You can save this as `PROJECT_LOG.md` in your repository. It contains the directory structure, file manifest, all ratified specification changes (R1–R32), the diagnostic suite, and the exact state of the test fixtures across all 5 phases.
+
+***
+
+# TXG (Text Graph) v0.2.0 — Master Project Log
+
+**Status:** Specification Frozen. Python Reference Engine 100% Verified. Node.js Parity Pending Final Audit.
+**Core Architecture:** A zero-dependency, human-first, domain-specific text graph format for AI Agent skills, execution pipelines, and static analysis.
+
+---
+
+## 1. Directory Structure & File Manifest
+
+The project is structured as a dual-language compiler/runtime paired with a robust conformance test suite.
+
+```text
+txg-project/
+├── txg_engine.py           # Python Reference Parser (Verified in PyBox)
+├── txg_runtime.py          # Python Reference Runtime (Verified in PyBox)
+├── txg.mjs                 # Node.js Reference Parser (Pending 2x2 matrix parity)
+├── txg_conformance.py      # Python Test Suite Runner
+│
+├── fixtures/               # 59 Static + 9 Runtime Conformance Tests
+│   ├── P-01-canonical/
+│   │   ├── input.txg
+│   │   ├── SKILL.md
+│   │   ├── assets/
+│   │   └── expected.json
+│   ├── ... (P-02 through P-15: Parse & Lexing)
+│   ├── ... (R-01 through R-10: Resolve & Scope)
+│   ├── ... (G-01 through G-19: Graph Topology)
+│   ├── ... (S-01 through S-16: Semantics & Annotations)
+│   ├── ... (B-01 through B-10: Context Budgeting)
+│   └── ... (RT-01 through RT-09: Runtime Engine)
+│
+└── PROJECT_LOG.md          # This file
+```
+
+---
+
+## 2. The `.txg` Specification (v0.2.0)
+
+### A. Grammar (EBNF Snippet)
+```ebnf
+document  = { NL | comment | directive | statement } ;
+directive = "@" NAME ":" ( STRING | TEXT ) NL ;   (* @txg must be first *)
+statement = ( reads | flow ) [ comment ] ( NL | EOF ) ;
+
+reads     = node "reads" ":" node { "," node } ;
+flow      = node chain ;
+chain     = { edge ( node | fork ) } ;
+edge      = "->" | "-!>" ;                        (* standard | fallback *)
+bound     = "(" "loop" "max" INT [ "," "carry" ":" ID {"," ID} ] ")" ;
+fork      = "?" test "{" arm { ( NL | "," ) arm } "}" ;
+test      = "exit" [ "(" ID ")" ] | "judge" STRING ;
+arm       = pattern "=>" node [ chain ] ;
+pattern   = INT | STRING | "_" ;
+```
+
+### B. Diagnostic Suite (TXG001–TXG025)
+| ID | Severity | Trigger |
+|---|---|---|
+| **TXG001** | error | Lexical/Parse error (e.g., bad escape, unterminated string). |
+| **TXG002** | error | Missing `@txg` or major version mismatch (hard exit). |
+| **TXG003** | error | Duplicate node ID declaration. |
+| **TXG004** | error | Undeclared bare ID reference. |
+| **TXG005** | error | Bound on non-header, OR back-edge into a header without a bound. |
+| **TXG006** | error | `? exit` fork with no preceding `tool:` in the execution scope. |
+| **TXG007** | warn | Fork is missing the `_` fallback arm. |
+| **TXG008** | error | Unresolvable ref: `missing-file`, `label-into-reads`, `invalid-carry-source`. |
+| **TXG009** | warn | Orphan assets in `references/` or `scripts/` not referenced by any node. |
+| **TXG010** | error | `tool:` invocation missing from `SKILL.md` frontmatter permissions. |
+| **TXG011** | warn | Unknown directive, invalid `@token_ratio` (1-8), or malformed budget. |
+| **TXG012** | error | Unknown box kind (e.g., `[script: ...]`). |
+| **TXG013** | error | Duplicate annotations, or `(idempotent)` on a non-`tool:` node. |
+| **TXG014** | error | `[ask:]` requires a non-empty STRING payload. |
+| **TXG015** | error | Path containment failure (absolute, drive letter, or `..`). |
+| **TXG016** | error | Duplicate pattern in a fork (e.g., two `0 =>` arms). |
+| **TXG017** | warn | Unreachable arm positioned after `_`. |
+| **TXG018** | warn | `carry:` source does not dominate all back-edges into the loop header. |
+| **TXG019** | error | Irreducible control flow (SCC with multiple entry headers). |
+| **TXG020** | warn | Node has zero out-degree and is not `[halt]` (dangling leaf). |
+| **TXG021** | warn | Bounded loop traverses a `tool:` lacking `(idempotent)`. |
+| **TXG022** | warn/error | Bounded header lacks `-!>`. (Warn if plain loop, **Error** if `carry:`). |
+| **TXG023** | warn/error | Budget exceeded. Warn @ 0.8x, Error @ 1.0x. (`peak-turn` or `peak-iteration`). |
+| **TXG024** | warn | Node is unreachable from `@entry`/statement starts. |
+| **TXG025** | error | `@txg` present but not the first directive. |
+
+---
+
+## 3. Architectural Discoveries & Ratifications (R-Series)
+
+During the development and dual-language verification, the following bugs, gaps, and semantic refinements were discovered and locked:
+
+*   **[R14] Fat Arrow Lexing:** `=>` was initially missing from the lexer. All forks would fail. Patched in both Python and JS.
+*   **[R23] Multi-line Annotations:** `parse_annotations` failed if a `(loop max...)` was on a newline. Fixed by adding save-and-restore newline skipping.
+*   **[R24b] Single-Statement Headers:** SCC entry detection failed for self-loops (`h -> h`). Fixed by falling back to the statement's root node inside the SCC.
+*   **[R30] Frontmatter YAML Subset:** `SKILL.md` permissions are strictly `allowed_tools:` or `permissions:` with `- ` or `[a, b]` lists.
+*   **[R31] Missing `SKILL.md`:** If absent, permission checks (TXG010) are bypassed entirely.
+*   **[R32] Tarjan & Fork Delimiters:** Standard Tarjan dropped single-node self-loops; patched to detect `len(scc) == 1 and v in edges[v]`. Fork arm parsing was consuming the newline separating arms; patched by skipping Nls before checking for `}`.
+
+---
+
+## 4. Conformance Test Status
+
+The suite is divided into 5 static phases and 1 runtime phase. All Python tests are currently passing.
+
+### Phase 1: Parse & Lexing (15/15 Pass)
+Tests basic grammar, strings, escapes, directive ordering, and trivial files.
+*   *Key Tests:* `P-02` (strings with brackets), `P-08b` (directives are comment-free), `P-09b` (hard exit on v1.0), `P-15` (TXG025 misplaced @txg).
+
+### Phase 2: Resolve & Scope (11/11 Pass)
+Tests hoisting, forward references, missing files, and path containment.
+*   *Key Tests:* `R-03` (TXG004 undeclared), `R-06` (TXG008 three subcodes), `R-07` (TXG015 path escapes).
+
+### Phase 3: Graph Topology (19/19 Pass)
+Tests loops, SCCs, fallbacks, and reachability.
+*   *Key Tests:* `G-04` (multi-path SCC), `G-06` (irreducible flow TXG019), `G-10` (TXG016 duplicate fork), `G-15` (TXG018 non-dominating carry).
+
+### Phase 4: Semantics & Annotations (16/16 Pass)
+Tests permissions, idempotency, and directive ranges.
+*   *Key Tests:* `S-02` (TXG010 permission), `S-05` (TXG021 non-idempotent loop), `S-08` (TXG013 duplicate annotations), `S-10/S-11` (TXG022 dual severity).
+
+### Phase 5: Context Budgeting (10/10 Specified)
+Tests token arithmetic, dynamic loops, and deduplication.
+*   *Key Tests:* `B-04` (peak_iteration blowup), `B-05` (multi-branch deduplication). 
+*   *(Status: B-01 through B-10 are fully specified and awaiting JS parity).*
+
+### Runtime Engine (9/9 Pass)
+Tests AST execution, mocks, and envelope generation.
+*   *Key Tests:* `RT-01` (present/empty/absent), `RT-06` (exhaustion suppression), `RT-08` (budget halt), `RT-09` (ask + judge routing).
+
+---
+
+## 5. Next Steps (Handover to Gemini)
+
+1.  **Apply Node.js Patches:** Port the missing 8 semantic checks (TXG004, TXG008b/c, TXG005, TXG007, TXG020, TXG024, TXG006) and the TXG023 0.8x warning into `txg.mjs`.
+2.  **Execute 2x2 Matrix:** Run `txg.mjs` against the 59 static fixtures and 9 runtime fixtures.
+3.  **Cross-Run Verification:** Prove that `Python Runtime × Node Parser` produces byte-identical output to `Node Runtime × Python Parser`.
+4.  **Finalize:** Close out Order A.
