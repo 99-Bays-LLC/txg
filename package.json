@@ -1,14 +1,39 @@
 {
   "name": "txg",
   "version": "0.1.1",
-  "description": "Text Graph (.txg): a plain-text map of an agent skill. Parser, linter and Mermaid/JSON export. No dependencies.",
+  "description": "TXG (.txg) v0.1.1: a plain-text map of an agent skill. Parser, linter and Mermaid/JSON export. No dependencies. Current work is the v0.2 line at txgr.dev.",
   "type": "module",
-  "bin": { "txg": "js/txg.mjs" },
-  "files": ["js", "python", "SPEC.md", "LICENSE"],
+  "bin": {
+    "txg": "js/txg.mjs"
+  },
+  "files": [
+    "js",
+    "python",
+    "SPEC.md",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "test": "node --test tests/txg.test.mjs && node tests/run-fixtures.mjs && python3 -I tests/run_fixtures.py"
   },
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/99-Bays-LLC/txg.git" }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/99-Bays-LLC/txg.git"
+  },
+  "homepage": "https://txgr.dev",
+  "keywords": [
+    "txg",
+    "agent-skills",
+    "workflow",
+    "linter",
+    "static-analysis",
+    "dsl"
+  ],
+  "bugs": {
+    "url": "https://github.com/99-Bays-LLC/txg/issues"
+  }
 }

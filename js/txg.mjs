@@ -1,11 +1,17 @@
 #!/usr/bin/env node
-// txg.mjs: parser, linter and Mermaid exporter for Text Graph (.txg). Zero dependencies, Node 18+.
+// SPDX-License-Identifier: MIT
+// Copyright (c) 2026 99 Bays LLC
+//
+// txg.mjs: parser, linter and Mermaid exporter for TXG (.txg) v0.1.1.
+// Zero dependencies, Node 20+.
 //
 //   node txg.mjs lint    <flow.txg | skill-dir> [--json]
 //   node txg.mjs mermaid <flow.txg>
 //   node txg.mjs json    <flow.txg>          (the parsed graph, for renderers)
 //
-// Prototype v0.1. The grammar is in SPEC.md; every lint code is listed at the bottom of that file.
+// It reads and reports. It never runs a command, tool call or instruction that a
+// .txg file describes. The grammar is in SPEC.md; every lint code is listed at
+// the bottom of that file.
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, resolve } from "node:path";

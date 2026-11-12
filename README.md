@@ -1,6 +1,12 @@
-# Text Graph (`.txg`)
+# TXG (`.txg`) v0.1.1
 
 A plain-text map of an agent skill. A `flow.txg` file sits beside `SKILL.md` and says what the skill reads, what it runs, and where it branches, in a format a person can read and a program can check.
+
+> **Which line is this?** This repository is **v0.1.1**: the original draft, with two independent implementations that agree on all 39 fixtures. It is complete and it still runs, but it is not where the language is being developed now.
+>
+> Current work is the **v0.2** line at **[txgr.dev](https://txgr.dev)**, which has a different syntax, different diagnostic numbering and its own compiler. Passing the 39 fixtures here says nothing about v0.2 conformance. For what v0.2 does, what is broken in it and what was never built, see [txgr.dev/history](https://txgr.dev/history).
+>
+> The language was called "Text Graph" until 12 November 2026. The name was retired: **TXG** is the language, **TXGR** the platform and site.
 
 It is a **description**, not an execution engine. `SKILL.md` stays the instruction set. The graph is checked against it by a linter, drawn for humans, and may later act as a guardrail ("the run left the expected path").
 
@@ -38,9 +44,11 @@ python3 python/txg.py lint examples/code-review  # same, in Python
 
 ## Status
 
-Version 0.1.1, a draft. Two independent implementations (JavaScript and Python) agree on all 39 shared fixtures in [fixtures/](fixtures/), one per lint rule case.
+Version 0.1.1, a draft, and settled. Two independent implementations (JavaScript and Python) agree on all 39 shared fixtures in [fixtures/](fixtures/), one per lint rule case. Writing the parser twice, the second time from the specification alone without reading the first, is what turned the vague parts of the draft into questions that had to be answered.
 
-Next candidates, in order: an `[ask: "question"]` step for a human in the loop, then `[skill: name]` for calling another skill.
+This line is no longer being extended. The `[ask: "question"]` step for a human in the loop was the next candidate here; it exists in v0.2 instead, along with `[halt]`, header-level loop bounds and a context budget. New language work belongs on the v0.2 line at [txgr.dev](https://txgr.dev).
+
+Bug reports against the v0.1.1 implementations in this repository are still welcome.
 
 ## Tests
 
