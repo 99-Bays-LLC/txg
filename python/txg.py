@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 99 Bays LLC
 """
-txg.py: Zero-dependency Python 3.10+ parser, linter, and exporter for Text Graph (.txg) v0.1.1.
-Direct token-stream recursive descent implementation matching txg.mjs behavior.
+txg.py: Zero-dependency Python 3.10+ parser, linter, and exporter for TXG (.txg) v0.1.1.
+
+Written from SPEC.md without reading txg.mjs, so that the two implementations
+disagreeing would expose an ambiguity in the specification. A direct token-stream
+recursive descent implementation; it now matches txg.mjs on all 39 fixtures.
+
+It reads and reports. It never runs a command, tool call or instruction that a
+.txg file describes.
 """
 
 import sys

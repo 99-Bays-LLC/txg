@@ -1,5 +1,9 @@
 # Text Graph (.txg) v0.1.1
 
+> This title is kept as published. The language was renamed **TXG** on 12 November 2026, after this
+> version was settled. This document specifies v0.1.1 only; the current line is v0.2, specified
+> separately at [txgr.dev](https://txgr.dev), with different syntax and diagnostic numbering.
+
 A `.txg` file is a **descriptive map** of an agent skill: what it reads, what it runs, where it branches.
 It lives beside `SKILL.md` as `flow.txg`. It is not an execution engine. `SKILL.md` stays the instruction set; the
 graph is checked against it by a linter, rendered for humans, and may later act as a guardrail ("the run left the
@@ -111,7 +115,7 @@ health -> ? exit { 0 => tag: [tool: bash("git tag release")] -> done: [Report va
 
 ## Drafting prompt (SKILL.md to flow.txg)
 
-> Read this SKILL.md and the files beside it. Write `flow.txg` in Text Graph v0.1 (SPEC.md). Declare every step
+> Read this SKILL.md and the files beside it. Write `flow.txg` in TXG v0.1.1 (SPEC.md). Declare every step
 > with an id. Use `reads:` for files loaded into context, `tool: bash("...")` or `mcp:server/tool` for commands, `? exit`
 > only after a tool, `? judge "..."` for model decisions, `-!>` for failure paths, and `(max N)` on every loop. Do not
 > invent steps the SKILL.md does not describe. Then run `node txg.mjs lint` and fix what it reports.
