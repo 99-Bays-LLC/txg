@@ -6,7 +6,7 @@ That is the design, not a guarantee about your environment. The linters read fil
 
 ## Reporting a vulnerability
 
-Report privately, through GitHub's private vulnerability reporting on this repository: open the **Security** tab and choose **Report a vulnerability**. It is visible only to the maintainers. You can also email ismamusosi@gmail.com.
+Report privately, through GitHub's private vulnerability reporting on this repository: open the **Security** tab and choose **Report a vulnerability**. It is visible only to the maintainers. You can also email hello@99bays.com.
 
 Please do not open a public issue for a suspected vulnerability, and do not include secrets or a working exploit against anyone's live system.
 
